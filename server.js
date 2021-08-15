@@ -34,11 +34,12 @@ app.use("/products", productRoute);
 app.use("/carts", cartRoute);
 app.use("/users", userRoute);
 app.use("/auth", authRoute);
+const uri = "mongodb+srv://admin:admin@cluster0.0ksew.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 //mongoose
 mongoose.set("useFindAndModify", false);
 mongoose
-  .connect("database credential", { useNewUrlParser: true })
+  .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((result) => {
     app.listen(process.env.PORT || port, () => {
       console.log("connect");
